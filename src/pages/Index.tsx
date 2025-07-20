@@ -23,6 +23,16 @@ const Index = () => {
   const [generatedUrl, setGeneratedUrl] = useState<string>("");
 
   const generateBusinessCard = () => {
+    // Validate that we have at least a name
+    if (!cardData.name.trim()) {
+      toast({
+        title: "Please enter your name",
+        description: "Name is required to generate a business card.",
+        variant: "destructive",
+      });
+      return;
+    }
+
     // Generate a unique ID for the card
     const cardId = Math.random().toString(36).substring(2, 15);
     
